@@ -97,14 +97,22 @@ function MyScrollableParentElement() {
         position: 'absolute';
         overflowY: 'auto';
       }}>
-      <StickyContainer>
+      <StickyContainer
+        component="div" // string or a e.g. StyledComponent
+        headerHeight="100px"
+        headerPosition="0px" // from top
+        footerHeight="2rem"
+        footerPosition="4rem" // from bottom
+      >
       </StickyContainer>
     </div>
   );
 }
 
 function MyStickyElement() {
-  const [ isStuck ] = useOnSticky();
+  const id = "someId";
+  // important: you need to pass in a unique id
+  const [ isStuck ] = useOnSticky(id);
 
   useEffect(() => {
     console.log(isStuck);
@@ -113,6 +121,7 @@ function MyStickyElement() {
   return (
     <div
       className="sticky"
+      id={id} // important: you need to pass in a unique id
       style={{
         position: 'sticky',
         top: '10px',
