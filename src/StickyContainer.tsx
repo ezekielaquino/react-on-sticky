@@ -10,17 +10,20 @@ interface StickyContainerProps {
   footerHeight: string;
   footerPosition: string;
   children: React.ReactNode;
+  isDebug?: boolean;
   [prop: string]: any;
 }
 
 export const StickyContainer = React.forwardRef(
   (props: StickyContainerProps, ref) => {
     const {
+      className,
       component = 'div',
       headerHeight = '100px',
       headerPosition = '0px',
       footerHeight = '100px',
       footerPosition = '0px',
+      isDebug,
       children,
     } = props;
     const headerSentinelRef = useRef() as React.MutableRefObject<
@@ -37,6 +40,7 @@ export const StickyContainer = React.forwardRef(
       pointerEvents: 'none',
       left: 0,
       right: 0,
+      border: isDebug ? '1px solid red' : 0,
     } as React.CSSProperties;
 
     useEffect(() => {
@@ -50,7 +54,7 @@ export const StickyContainer = React.forwardRef(
     }, []);
 
     return (
-      <WrapComponent ref={ref}>
+      <WrapComponent ref={ref} className={className} {...props}>
         <div
           ref={headerSentinelRef}
           style={{

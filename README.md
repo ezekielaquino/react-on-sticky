@@ -54,6 +54,15 @@ IntersectionObserver will keep track of. Please see the reference article above
 in the introduction to learn more about the mechanics of this. Play around with
 the height/offset of the sentinels to get the exact trigger you're looking for.
 
+| prop           | Description                                                                                 |
+| -------------- | ------------------------------------------------------------------------------------------- |
+| component      | string \| JSX.Element - the dom element as string to render or a JSX Element as the wrapper |
+| headerHeight   | string \| the height of the top sentinel                                                    |
+| headerPosition | string \| the position of the top sentinel relative to the top of the parent                |
+| footerHeight   | string \| the height of the bottom sentinel                                                 |
+| footerPosition | string \| the position of the bottom sentinel relative to the bottom of the parent          |
+| isDebug        | boolean \| optional, render a visible border around the sentinels                           |
+
 ```jsx
 import { useOnStickyRoot, StickyContainer } from 'react-on-sticky';
 
@@ -67,7 +76,13 @@ function MyScrollableParentElement() {
         position: 'absolute';
         overflowY: 'auto';
       }}>
-      <StickyContainer>
+      <StickyContainer
+        component="div" // string or a e.g. StyledComponent
+        headerHeight="100px"
+        headerPosition="0px" // from top
+        footerHeight="2rem"
+        footerPosition="4rem" // from bottom
+      >
       </StickyContainer>
     </div>
   );
