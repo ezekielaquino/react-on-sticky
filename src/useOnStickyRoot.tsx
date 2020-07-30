@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import { sentinels } from './Sentinels';
 import Emitter from './Emitter';
 
-export function useStickyRoot() {
+export function useOnStickyRoot() {
   const ref = useRef() as React.RefObject<HTMLDivElement>;
   const headerObserver = useRef() as React.MutableRefObject<
     IntersectionObserver

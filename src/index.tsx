@@ -1,3 +1,3 @@
 export { StickyContainer } from './StickyContainer';
-export { useIntersectionChange } from './useIntersectionChange';
-export { useStickyRoot } from './useStickyRoot';
+export { useOnSticky } from './useOnSticky';
+export { useOnStickyRoot } from './useOnStickyRoot';

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Emitter from './Emitter';
 
-export function useIntersectionChange(id: string): [boolean] {
+export function useOnSticky(id: string): [boolean] {
   const [isStuck, setStuck] = useState<boolean>(false);
 
   const onEmit = (e: any) => {

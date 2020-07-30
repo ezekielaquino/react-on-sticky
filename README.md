@@ -1,37 +1,124 @@
-# npm-react-typescript-template
+# react-on-sticky
 
-A template for publishing a React + TypeScript package to npm
+A React implementation of
+["An event for CSS position:sticky"](https://developers.google.com/web/updates/2017/09/sticky-headers)
 
-## How to use
+**Note**
 
-Fork this repo, clone it to your local computer, and edit the `package.json`
-along with every other required file to match your project. Write the code for
-your package in TypeScript and Sass, compile it, and publish it to
-[npm](https://npmjs.com).
+This is a pre-release, put this on npm for now so I can use it already for a
+personal project (unfortunately, i don't pay for npm private packages _sob_
+someone donate)
 
-To compile your code once, run
+## Getting started
 
-- `npm run build`.
+`yarn add react-on-sticky`
 
-To compile your code once and refresh on file change, run
+The package consists of three components:
 
-- `npm run start`.
+- useStickyRoot (hook)
+- useOnSticky (hook)
+- StickyContainer
 
-To publish your package to npm, make sure you're logged in the correct account
-by running
+## Usage
 
-- `npm login`.
+### useOnStickyRoot
 
-Compile your package by running
+Use this hook within parent element/component of the targeted element which has
+`position: sticky`. Pass the ref provided by the hook into your parent element's
+ref.
 
-- `npm run build`
+```jsx
+import { useOnStickyRoot } from 'react-on-sticky';
 
-Update the package version accordingly by using
+function MyScrollableParentElement() {
+  const [ stickyRootRef ] = useOnStickyRoot();
 
-- [`npm version [patch | minor | major]`](https://docs.npmjs.com/about-semantic-versioning)
+  return (
+    <div
+      ref={stickyRootRef}
+      style={{
+        position: 'absolute';
+        overflowY: 'auto';
+      }}>
+      { children }
+    </div>
+  );
+}
+```
 
-Then publish your package by running
+### StickyContainer
 
-- `npm publish`
+The sticky container must wrap the target element with `position: sticky`. This
+component will inject invisibble header/footer `sentinels` which the
+IntersectionObserver will keep track of. Please see the reference article above
+in the introduction to learn more about the mechanics of this. Play around with
+the height/offset of the sentinels to get the exact trigger you're looking for.
 
-### Happy Building ♡
+```jsx
+import { useOnStickyRoot, StickyContainer } from 'react-on-sticky';
+
+function MyScrollableParentElement() {
+  const [ stickyRootRef ] = useOnStickyRoot();
+
+  return (
+    <div
+      ref={stickyRootRef}
+      style={{
+        position: 'absolute';
+        overflowY: 'auto';
+      }}>
+      <StickyContainer>
+      </StickyContainer>
+    </div>
+  );
+}
+```
+
+### useOnSticky
+
+The hook that will receive the on sticky event. In the reference article, it
+toggles a class. This does not do that, but it exposes a boolean `isStuck` value
+which you can then do anything under the sun with (including toggling
+classNames).
+
+Important note: Make sure that the element that has `position:sticky` has a
+className `sticky`. Otherwise this won't work.
+
+```jsx
+import { useOnStickyRoot, StickyContainer, useOnSticky } from 'react-on-sticky';
+
+function MyScrollableParentElement() {
+  const [ stickyRootRef ] = useOnStickyRoot();
+
+  return (
+    <div
+      ref={stickyRootRef}
+      style={{
+        position: 'absolute';
+        overflowY: 'auto';
+      }}>
+      <StickyContainer>
+      </StickyContainer>
+    </div>
+  );
+}
+
+function MyStickyElement() {
+  const [ isStuck ] = useOnSticky();
+
+  useEffect(() => {
+    console.log(isStuck);
+  }, [isStuck]);
+
+  return (
+    <div
+      className="sticky"
+      style={{
+        position: 'sticky',
+        top: '10px',
+      }}>
+      I'm stuck!
+    </div>
+  );
+}
+```
