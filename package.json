@@ -1,9 +1,9 @@
 {
   "name": "react-on-sticky",
   "version": "0.0.1",
-  "description": "Toggle a state on position sticky elements",
+  "description": "A React implementation for position:sticky events",
   "author": "@ezekielaquino",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "repository": "ezekielaquino/react-on-sticky",
   "main": "dist/react-on-sticky.cjs.js",
   "module": "dist/react-on-sticky.esm.js",
@@ -64,6 +64,6 @@
   "keywords": [
     "react",
     "typescript",
-    "npm"
+    "sticky"
   ]
 }
