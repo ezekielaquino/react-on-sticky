@@ -1,7 +1,11 @@
 # react-on-sticky
 
 A React implementation of
-["An event for CSS position:sticky"](https://developers.google.com/web/updates/2017/09/sticky-headers)
+["An event for CSS position:sticky"](https://developers.google.com/web/updates/2017/09/sticky-headers).
+Uses Intersection Obverser to trigger when an element is stickied. Please refer
+to the link for more details.
+
+[DEMO](https://react-on-sticky-demo.vercel.app)
 
 **Note**
 
