@@ -1,6 +1,6 @@
 {
   "name": "react-on-sticky",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "A React implementation for position:sticky events",
   "author": "@ezekielaquino",
   "license": "MIT",
