@@ -1,0 +1,69 @@
+{
+  "name": "react-on-sticky",
+  "version": "0.0.1",
+  "description": "Toggle a state on position sticky elements",
+  "author": "@ezekielaquino",
+  "license": "Apache-2.0",
+  "repository": "ezekielaquino/react-on-sticky",
+  "main": "dist/react-on-sticky.cjs.js",
+  "module": "dist/react-on-sticky.esm.js",
+  "typings": "dist/index.d.ts",
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
+  },
+  "scripts": {
+    "build": "yarn build:lib & yarn build:ts",
+    "build:lib": "rollup -c",
+    "build:ts": "tsc -p tsconfig.build.json",
+    "start": "rollup -c -w"
+  },
+  "dependencies": {
+    "mitt": "^2.1.0",
+    "uid": "^1.0.0"
+  },
+  "peerDependencies": {
+    "react": ">= 16.8.0 < 2",
+    "react-dom": ">= 16.8.0 < 2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
+    "@types/react": "^16.9.43",
+    "@types/react-dom": "^16.9.8",
+    "@types/uuid": "^8.0.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-dev-expression": "^0.2.2",
+    "babel-runtime": "^6.26.0",
+    "husky": "^4.2.5",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rollup": "^2.23.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "typescript": "^3.9.7"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": true,
+    "trailingComma": "all",
+    "proseWrap": "always"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc && pretty-quick --staged"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "typescript",
+    "npm"
+  ]
+}
